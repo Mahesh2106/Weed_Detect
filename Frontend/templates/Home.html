@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Weed Detection</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="{% static 'img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid bg-white sticky-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg bg-white navbar-light py-2 py-lg-0">
+                <a href="index.html" class="navbar-brand">
+                    <img class="img-fluid" src="{% static 'img/crop1.jpg' %}" alt="Logo" width="200px" height="60px">
+                </a>
+                <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <a href="index.html" class="nav-item nav-link active">Home</a>
+                        {% if request.session.username %}
+                        <a href="{% url 'Logout_fn' %}" class="nav-item nav-link active">Logout</a>
+                        {% else %}
+                        <a href="{% url 'RegistrationForm' %}" class="nav-item nav-link active">Register</a>
+                        {% endif %}
+
+                            </div>
+                        </div>
+
+
+
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Carousel Start -->
+    <div class="container-fluid px-0 mb-5">
+        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="w-100" src="{% static 'img/carousel-1.jpg' %}" alt="Image">
+                    <div class="carousel-caption">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-7 text-center">
+                                    <p class="fs-4 text-white animated zoomIn">Welcome to <strong class="text-dark">Weed Detection</strong></p>
+                                    <h1 class="display-1 text-dark mb-4 animated zoomIn">Power of AI And Machine Learning</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+
+    <!-- About Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6">
+                    <div class="row g-3">
+                        <div class="col-6 text-end">
+                            <img class="img-fluid bg-white w-200 mb-3 wow fadeIn" data-wow-delay="0.1s" src="{% static 'img/cropandweed.jpeg' %}" alt="">
+                            <img class="img-fluid bg-white w-300 wow fadeIn" data-wow-delay="0.2s" src="{% static 'img/cropandweed2.jpeg' %}" alt="">
+                        </div>
+                        <div class="col-6">
+                            <img class="img-fluid bg-white w-200 mb-3 wow fadeIn" data-wow-delay="0.3s" src="{% static 'img/cropandweed3.jpeg' %}" alt="">
+                            <img class="img-fluid bg-white w-300 wow fadeIn" data-wow-delay="0.4s" src="{% static 'img/cropandweed4.jpeg' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="section-title">
+                        <p class="fs-5 fw-medium fst-italic text-primary">About Project</p>
+                        <h1 class="display-6">What is weed detection?</h1>
+                    </div>
+                    <div class="row g-3 mb-4">
+                        <div class="col-sm-4">
+                            <img class="img-fluid bg-white w-150" src="{% static 'img/cropandweed5.jpeg' %}" alt="">
+                        </div>
+                        <div class="col-sm-8">
+                            <h5>Weed detection systems are important solutions to one of the existing agricultural problems—unmechanized weed control. </h5>
+                            <p class="mb-0"> Weed detection also helps provide a means of reducing or eliminating herbicide use, mitigating agricultural environmental and health impact, and improving sustainability.</p>
+                        </div>
+                    </div>
+                    <div class="border-top mb-4"></div>
+                    <div class="row g-3">
+                        <div class="col-sm-8">
+                            <h5>What is the objective for weed detection project?</h5>
+                            <p class="mb-0">The main objective has been to obtain a formula so that a weed detection system can be developed through binary classifications. The initial step of image processing is the detection of green plants in order to eliminate all the soil in the image, reducing information that is not necessary.</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <img class="img-fluid bg-white w-150" src="{% static 'img/cropandweed5.jpeg' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Products Start -->
+    <div class="container-fluid product py-5 my-5">
+        <div class="container py-5">
+            <div class="section-title text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class="fs-5 fw-medium fst-italic text-primary">Our Source</p>
+                <h1 class="display-6">What is the role of AI in agriculture?</h1>
+            </div>
+            <div class="owl-carousel product-carousel wow fadeInUp" data-wow-delay="0.5s">
+                <a href="" class="d-block product-item rounded">
+                    <img src="img/product-1.jpg" alt="">
+                    <div class="bg-white shadow-sm text-center p-4 position-relative mt-n5 mx-4">
+                        <h4 class="text-primary">AI Specification</h4>
+                        <span class="text-body">By analyzing data from various sources, AI can help farmers make data-driven decisions,
+                            optimize resource usage, and reduce environmental impact.AI can be used to develop image recognition systems that can.
+                            identify weeds with a high degree of accuracy</span>
+                    </div>
+                </a>
+                <a href="" class="d-block product-item rounded">
+                    <img src="img/product-2.jpg" alt="">
+                    <div class="bg-white shadow-sm text-center p-4 position-relative mt-n5 mx-4">
+                        <h4 class="text-primary">General Science</h4>
+                        <span class="text-body">For example, the World Economic Forum has reported that AI integration in agriculture could bring about
+                            a 60% decrease in pesticide usage and a 50% reduction in water usage. AI algorithms can analyze the chemical composition of soil
+                            samples to determine which nutrients may be lacking. AI can also identify or even predict crop diseases. </span>
+                    </div>
+                </a>
+                <a href="" class="d-block product-item rounded">
+                    <img src="img/product-3.jpg" alt="">
+                    <div class="bg-white shadow-sm text-center p-4 position-relative mt-n5 mx-4">
+                        <h4 class="text-primary">Weed</h4>
+                        <span class="text-body">Weeds are unwanted and undesirable plants which interfere with the. utilization of land and water resources and thus adversely affect human welfare. They can also be referred as plants out of place. Weeds compete with the
+                            beneficial and desired vegetation in crop lands, forests, aquatic systems etc.</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Products End -->
+
+
+    <!-- Article Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
+                    <img class="img-fluid" src="{% static 'img/article.jpg' %}" alt="">
+                </div>
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="section-title">
+                        <p class="fs-5 fw-medium fst-italic text-primary">Featured Acticle</p>
+                        <h1 class="display-6">The history of Weed Detection</h1>
+                    </div>
+                    <p class="mb-4">In olden days weed  detection  was  done  by employing  some  men,  especially  for  weed removal purpose.
+                        They will detect the weeds by checking each and every plant field. Then they will pluck them out manually using their
+                        hands or spades. In proposed system the weeds can be detected by image processing techniques. The  main aim of  the
+                        project  is to identify  weed  affected  area for more seeding. Since there are different issues with respect to the
+                        developed yields on the field, a standout amongst the majority is about weeds which go as a hindrance in the development of the
+                        harvests. Weeds may break down the life and nature of the yields if it is not controlled legitimately in time.
+                        This  proposed thought  centers around to  reduce  the  work  and also  the  time  needed  to identify  weeds and  expel the  same.
+                        During this process  they  will  consider Edge  detection and colour segmentation  process.
+                        They will analyze  each and  every crop with their  intensity colour, Intensity, edge, Size etc., are been obtained as output.
+                        The colour of the edges and veins of the crop and weed are white after segmentation process and edge detection,
+                        whereas the rest of the image is totally  black  in  colour.  After  the  process  of  Edge  detection  and  Colour
+                        segmentation  it  has undergone the process of Filtering. The Filtering can be a type of process in which each and every
+                        crop can be  identified and their gain value,
+                        tradeoff's, edge, frequency of crop and weed can be identified and their threshold values can obtained </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Article End -->
+
+
+
+    <!-- Video Start -->
+    <div class="container-fluid video my-5">
+        <div class="container">
+            <div class="row g-0">
+                <div class="col-lg-6 py-5 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="py-5">
+                        <h1 class="display-6 mb-4">How to use <br><span class="text-white">Tips</span> and <span class="text-white">Guidance</span></h1>
+                        <h5 class="fw-normal lh-base fst-italic text-white mb-5">Attending, Exploring, Understanding/goal setting, Intervention, and Finalisation. In the project Worklife Guidance and in the tools of this toolbox,
+                            the focus is on guidance and counselling for worklife career.</h5>
+                        <div class="row g-4 mb-5">
+                            <div class="col-sm-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0 btn-lg-square bg-white text-primary rounded-circle me-3">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                    <span class="text-dark">Click On The Option</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0 btn-lg-square bg-white text-primary rounded-circle me-3">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                    <span class="text-dark">Insert Your Desired File</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0 btn-lg-square bg-white text-primary rounded-circle me-3">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                    <span class="text-dark">Click On the Button(Start Detecting)</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0 btn-lg-square bg-white text-primary rounded-circle me-3">
+                                        <i class="fa fa-check"></i>
+                                    </div>
+                                    <span class="text-dark">Wait And See Result As A Pop Message</span>
+                                </div>
+                            </div>
+                        </div>
+                        <form action="{% url 'detect_weed_or_crop' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="file" class="btn btn-light rounded-pill py-2 px-3" required name="image_file">
+                            {% if request.session.username %}
+                        <button class="btn btn-light rounded-pill py-3 px-5">Start Detecting</button>
+                            </form>
+                            {% else %}
+
+
+                                <a href="{% url 'RegistrationForm' %}" class="btn btn-light rounded-pill py-3 px-5">Register</a>
+
+
+
+                            {% endif %}
+
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Result</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{result.result}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Testimonial Start -->
+    <div class="container-fluid testimonial py-5 my-5">
+
+        <div class="container py-5">
+            <div class="section-title text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class="fs-5 fw-medium fst-italic text-white">Testimonial</p>
+                <h1 class="display-6">What Our Clients Say About Our Website</h1>
+            </div>
+
+            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.5s">
+                {% for i in x %}
+                <div class="testimonial-item p-4 p-lg-5">
+                    <p class="mb-4">{{i.Description}}</p>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="text-start ms-3">
+                            <h5>{{i.username}}</h5>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Testimonial End -->
+
+
+    <!-- Contact Start -->
+    <div class="container-xxl contact py-5">
+        <div class="container">
+            <div class="section-title text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <h1 class="display-6">Overview</h1>
+            </div>
+            <div class="row justify-content-center wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-lg-8">
+                    <p class="text-center mb-5">Artificial intelligence, specifically deep learning, is a fast-growing research field today. One of its
+various applications is object recognition, making use of computer vision. The combination of these
+two technologies leads to the purpose of this thesis. In this project, a system for the identification of
+different crops and weeds has been developed as an alternative to the system present on the FarmBot
+company’s robots. This is done by accessing the images through the FarmBot API, using computer
+vision for image processing, and artificial intelligence for the application of transfer learning to a RCNN
+that performs the plants identification autonomously. The results obtained show that the system
+works with an accuracy of 78.10% for the main crop and 53.12% and 44.76% for the two weeds
+considered. Moreover, the coordinates of the weeds are also given as results. The performance of the
+resulting system is compared both with similar projects found during research, and with the current
+version of the FarmBot weed detector. </p>
+                    <div class="row g-5">
+                        <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="btn-square mx-auto mb-3">
+                                <i class="fa fa-envelope fa-2x text-white"></i>
+                            </div>
+                            <p class="mb-2">name@example.com</p>
+                            <p class="mb-0">name1@example.com</p>
+                        </div>
+                        <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="btn-square mx-auto mb-3">
+                                <i class="fa fa-phone fa-2x text-white"></i>
+                            </div>
+                            <p class="mb-2">+012 345 67890</p>
+                        </div>
+                        <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="0.5s">
+                            <div class="btn-square mx-auto mb-3">
+                                <i class="fa fa-map-marker-alt fa-2x text-white"></i>
+                            </div>
+                            <p class="mb-2">Fort Street</p>
+                            <p class="mb-0">Ernakulam, Kerala</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact Start -->
+
+    <form action="{% url 'ReviewSave' %}" method="post">
+        {% csrf_token %}
+
+        <div style="margin-left:450px;">
+            <div class="form-floating">
+                <input type="hidden" name="uname" value="{{request.session.username}}">
+                                    <input class="form-control" placeholder="Insert Your Review Here" id="message" type="text" name="txt" style="height: 120px;width:550px;">
+                                    <label for="message">Review</label>
+                                </div>
+            <br>
+    <div class="col-12">
+                                {% if request.session.username %}
+        <button class="btn btn-primary rounded-pill py-3 px-4" style="margin-left:200px;" type="submit">Submit Review</button>
+
+        {% else %}
+        <a href="{% url 'RegistrationForm' %}" class="btn btn-primary rounded-pill py-3 px-4" style="margin-left:200px;">Register</a>
+
+
+        {% endif %}
+
+
+    </div>
+        </div>
+        </form>
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-primary mb-4">Authencity</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>Fort Street, Ernakulam , Kerala</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt text-primary me-3"></i>+012 345 67890</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>name@example.com</p>
+                    <div class="d-flex pt-3">
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-primary mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="{% url 'home' %}">Home</a>
+                    {% if request.session.username%}
+                    <a class="btn btn-link" href="{% url 'Logout_fn' %}">Logout</a>
+                    {% else %}
+                    <a class="btn btn-link" href="{% url 'RegistrationForm' %}">Sign Up</a>
+                    {% endif %}
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-primary mb-4">Business Hours</h4>
+                    <p class="mb-1">Monday - Saturday</p>
+                    <h6 class="text-light">24/5</h6>
+                    <p class="mb-1">Saturday</p>
+                    <h6 class="text-light">09:00 am - 12:00 pm</h6>
+                    <p class="mb-1">Sunday</p>
+                    <h6 class="text-light">Closed</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="fw-medium" href="#">Weed Detection</a>, All Right Reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ {% if messages %}
+        {% for i in messages %}
+            {% if i.tags == 'warning' %}
+                <script>
+                    swal('{{i}}','', 'warning');
+                </script>
+            {% elif i.tags == 'error' %}
+                <script>
+                    swal('{{i}}','', 'error');
+                </script>
+            {% else %}
+                <script>
+                    swal('{{i}}','', 'success');
+                </script>
+            {% endif %}
+
+        {% endfor %}
+    {% endif %}
+</body>
+
+</html>
